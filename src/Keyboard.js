@@ -40,12 +40,16 @@ export class Keyboard extends React.Component{
         }
 
     }
+    charClick(e){
+        //this.props.addChar(e.target.getAttribute("Key"));
+        this.props.addChar(e);
+    }
+   
 
     render(){
         const chars=lenguages[this.state.lenguage]
-        const letters=chars.map(char=><button key={char}>{char}</button>);
-
-        const numbers=this.numbers.map(num=><button key={num}>{num}</button>);
+        const letters=chars.map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
+        const numbers=this.numbers.map(num=><button onClick={()=>{this.charClick(num)}} key={num}>{num}</button>);
         return (
         <div>
             <div>
@@ -57,6 +61,7 @@ export class Keyboard extends React.Component{
            <button onClick={this.capsLockClick}>CapsLK</button>
            <button onClick={this.cangheLenguage}>Leng</button>
            <button onClick={this.changeChars}>Chars</button>
+           <button onClick={this.props.backspace}>Backspace</button>
         </div>
         );
     }
