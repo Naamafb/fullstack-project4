@@ -59,9 +59,11 @@ export class Keyboard extends React.Component{
            {letters}
            </div>
            <button onClick={this.capsLockClick}>CapsLK</button>
+           <button onClick={()=>{this.charClick(" ")}}>Space</button>
            <button onClick={this.cangheLenguage}>Leng</button>
            <button onClick={this.changeChars}>Chars</button>
            <button onClick={this.props.backspace}>Backspace</button>
+
         </div>
         );
     }
