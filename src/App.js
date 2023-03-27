@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state={text:[],
       styleText:this.styleClass.returnObject(),
     };
-    this.saveHistory.push({...this.state})
+    this.saveHistory.push({text:[], styleText:{...this.state.styleText}})
 
     this.addChar=this.addChar.bind(this);
     this.backspace=this.backspace.bind(this);
@@ -30,55 +30,61 @@ class App extends React.Component {
 
   }
   addChar(newChar){
-    var spanChar=<Text text={newChar} styleObject={this.state.styleText}/>
+    debugger
+    var spanChar=<Text text={newChar} styleObject={this.styleClass.returnObject()}/>
     this.state.text.push(spanChar);
-    this.setState({text:this.state.text})
+    this.setState({text:this.state.text,styleText:this.styleClass.returnObject()})
     this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
   backspace(){
     this.state.text.pop();
     this.setState({text:this.state.text})
-    this.saveHistory.push({...this.state})
+    this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
     }
   clearAll(){
     this.setState({text:[]})
-    this.saveHistory.push({...this.state})
+    this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
     }
   upperAll(){
     debugger
     const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text.toUpperCase()} styleObject={charSpan.props.styleObject}/>));
     this.setState({text:newText})
-    this.saveHistory.push({...this.state})
+    this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
     }
   lowerAll(){
     const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text.toLowerCase()} styleObject={charSpan.props.styleObject}/>));
     this.setState({text:newText})
-    this.saveHistory.push({...this.state})
+    this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
 
   }
-  undo(){
-    debugger
-    this.saveHistory.pop()
-    var prevState=this.saveHistory.pop()
-    this.setState(prevState)
-    
-  }
+ 
   changeFontSize(size){
     this.styleClass.FontSize=size;
     this.setState({styleText:this.styleClass.returnObject()})
-    this.saveHistory.push({...this.state})
   }
   changeColor(color){
     debugger
     this.styleClass.Color=color;
-    this.setState({styleText:this.styleClass.returnObject()})
-    this.saveHistory.push({...this.state})  
+    this.setState({styleText:this.styleClass.returnObject()})  
   }
   changeFont(font){
     debugger
     this.styleClass.FontFamily=font;
     this.setState({styleText:this.styleClass.returnObject()})
-    this.saveHistory.push({...this.state})
+  }
+  undo(){
+    debugger
+    this.saveHistory.pop()
+    if(this.saveHistory.length>1){
+    var prevState=this.saveHistory[this.saveHistory.length-1]
+    this.setState(prevState)
+    }
+    else{
+      var state={text:[],styleText:this.styleClass.returnObject()}
+      this.setState(state);
+      this.saveHistory.push({text:[],styleText:this.styleClass.returnObject()})
+    }
+    
   }
 render(){
   return (

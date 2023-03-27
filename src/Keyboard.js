@@ -63,6 +63,10 @@ export class Keyboard extends React.Component{
            <button onClick={this.cangheLenguage}>Leng</button>
            <button onClick={this.changeChars}>Chars</button>
            <button onClick={this.props.backspace}>Backspace</button>
+           <button onClick={this.props.clearAll}>ClearAll</button>
+           <button onClick={this.props.upperAll}>UpperAll</button>
+           <button onClick={this.props.lowerAll}>LowerAll</button>
+           <button onClick={this.props.undo}>Undo</button>
 
         </div>
         );

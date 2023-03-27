@@ -4,6 +4,6 @@ constructor(props){
     super(props) 
 }
 render(){
-    return (<span style={this.props.styleObject}>{this.props.text}</span>)
+    return (<span className={this.props.text} style={this.props.styleObject}>{this.props.text}</span>)
 }
 }
