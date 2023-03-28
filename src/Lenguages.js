@@ -3,4 +3,5 @@ export const lenguages={
     english_capital:'QWERTYUIOPASDFGHJKLZXCVBNM'.split(""),
     hebrow:'קראטוןםפשדכעיחלךףזסבהנמצתץ'.split(""),
     chars:['!','@','#','$','%','^','&','*','(',')','-','_','=','+','/','[',']','{','}',';',':','"','<','>','|','.','?','~','`',"'","\\"]
+    // faces:[":)", ]
 }

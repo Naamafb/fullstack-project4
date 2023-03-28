@@ -53,15 +53,15 @@ export class Keyboard extends React.Component{
         return (
         <div>
             <div>
-            {numbers}
+                {numbers}
             </div>
             <div>
-           {letters}
+                {letters}
            </div>
            <button onClick={this.capsLockClick}>CapsLK</button>
            <button onClick={()=>{this.charClick(" ")}}>Space</button>
            <button onClick={this.cangheLenguage}>Leng</button>
-           <button onClick={this.changeChars}>Chars</button>
+           <button onClick={this.changeChars}>!#1</button>
            <button onClick={this.props.backspace}>Backspace</button>
            <button onClick={this.props.clearAll}>ClearAll</button>
            <button onClick={this.props.upperAll}>UpperAll</button>

@@ -89,7 +89,15 @@ class App extends React.Component {
 render(){
   return (
     <div className="App">
-      <Screen id="mainScreen" text={this.state.text}/>
+      <div 
+      style={{
+          borderStyle: "dotted",
+          marginRight: 500,
+          marginLeft: 500,
+          marginTop: 150,
+          height:180}}>
+          <Screen id="mainScreen" text={this.state.text}/>
+      </div>
       <StylingButtons  changeFontSize={this.changeFontSize} changeColor={this.changeColor} changeFont={this.changeFont}/>
       <Keyboard lenguage='hebrow' addChar={this.addChar} 
       backspace={this.backspace} clearAll={this.clearAll} 
