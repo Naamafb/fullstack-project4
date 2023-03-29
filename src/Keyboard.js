@@ -52,6 +52,10 @@ export class Keyboard extends React.Component{
         const numbers=this.numbers.map(num=><button onClick={()=>{this.charClick(num)}} key={num}>{num}</button>);
         return (
         <div>
+            <button onClick={this.props.clearAll}>ClearAll</button>
+            <button onClick={this.props.upperAll}>UpperAll</button>
+            <button onClick={this.props.lowerAll}>LowerAll</button>
+            <button onClick={this.props.undo}><i class="material-icons">&#xe166;</i></button>
             <div>
                 {numbers}
             </div>
@@ -60,13 +64,10 @@ export class Keyboard extends React.Component{
            </div>
            <button onClick={this.capsLockClick}>CapsLK</button>
            <button onClick={()=>{this.charClick(" ")}}>Space</button>
-           <button onClick={this.cangheLenguage}>Leng</button>
+           <button onClick={()=>{this.charClick('\n')}}>Enter</button>
+           <button onClick={this.cangheLenguage}><i class='fas'>&#xf0ac;</i></button>
            <button onClick={this.changeChars}>!#1</button>
-           <button onClick={this.props.backspace}>Backspace</button>
-           <button onClick={this.props.clearAll}>ClearAll</button>
-           <button onClick={this.props.upperAll}>UpperAll</button>
-           <button onClick={this.props.lowerAll}>LowerAll</button>
-           <button onClick={this.props.undo}>Undo</button>
+           <button onClick={this.props.backspace}><i class='fas'>&#xf55a;</i></button>
 
         </div>
         );
