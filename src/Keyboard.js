@@ -10,6 +10,7 @@ export class Keyboard extends React.Component{
          this.capsLockClick=this.capsLockClick.bind(this);
          this.cangheLenguage=this.cangheLenguage.bind(this);
          this.changeChars=this.changeChars.bind(this);
+         this.changeEmojis=this.changeEmojis.bind(this);
 
          this.numbers='1234567890'.split("");
 
@@ -23,32 +24,49 @@ export class Keyboard extends React.Component{
              }
     }
     cangheLenguage(){
-        if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital'){
-            this.setState({lenguage:"hebrow"})
-        }
-        else if(this.state.lenguage=='hebrow'){
+        // if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital'){
+        //     this.setState({lenguage:"hebrow"})
+        // }
+        if(this.state.lenguage=='hebrow'){
             this.setState({lenguage:"english_small"})
+        }
+        else{
+            this.setState({lenguage:"hebrow"})
         }
 
     }
     changeChars(){
-        if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital' ||this.state.lenguage=='hebrow'){
-            this.setState({lenguage:"chars"})
-        }
-        else if(this.state.lenguage=='chars'){
+    //     if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital' ||this.state.lenguage=='hebrow'){
+    //         this.setState({lenguage:"chars"})
+    //     }
+        if(this.state.lenguage=='chars'){
             this.setState({lenguage:"hebrow"})
         }
+        else{
+            this.setState({lenguage:"chars"})
+        } 
 
     }
     charClick(e){
         //this.props.addChar(e.target.getAttribute("Key"));
         this.props.addChar(e);
     }
-   
+    changeEmojis(){
+        if(this.state.lenguage=='emojis'){
+            this.setState({lenguage:"hebrow"})
+        }
+        else{
+            this.setState({lenguage:"emojis"})
+        } 
+    }
 
     render(){
-        const chars=lenguages[this.state.lenguage]
-        const letters=chars.map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
+        debugger;
+        const chars=lenguages[this.state.lenguage];
+        const l = chars.length; //[0:l/3]
+        const letters1=chars.slice(0, l/3).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
+        const letters2=chars.slice(l/3, 2*l/3).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
+        const letters3=chars.slice(2*l/3, l).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
         const numbers=this.numbers.map(num=><button onClick={()=>{this.charClick(num)}} key={num}>{num}</button>);
         return (
         <div>
@@ -60,15 +78,21 @@ export class Keyboard extends React.Component{
                 {numbers}
             </div>
             <div>
-                {letters}
+                {letters1}
+           </div>
+            <div>
+                {letters2}
+           </div>
+            <div>
+                {letters3}
            </div>
            <button onClick={this.capsLockClick}>CapsLK</button>
            <button onClick={()=>{this.charClick(" ")}}>Space</button>
-           <button onClick={()=>{this.charClick('\n')}}>Enter</button>
+           <button onClick={()=>{this.charClick(<br></br>)}}>Enter</button>
            <button onClick={this.cangheLenguage}><i class='fas'>&#xf0ac;</i></button>
            <button onClick={this.changeChars}>!#1</button>
            <button onClick={this.props.backspace}><i class='fas'>&#xf55a;</i></button>
-
+           <button onClick={this.changeEmojis}>&#128512;</button>
         </div>
         );
     }
