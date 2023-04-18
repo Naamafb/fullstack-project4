@@ -52,6 +52,7 @@ export class Keyboard extends React.Component{
         this.props.addChar(e);
     }
     changeEmojis(){
+        debugger
         if(this.state.lenguage=='emojis'){
             this.setState({lenguage:"hebrow"})
         }
@@ -73,6 +74,9 @@ export class Keyboard extends React.Component{
             <button onClick={this.props.clearAll}>ClearAll</button>
             <button onClick={this.props.upperAll}>UpperAll</button>
             <button onClick={this.props.lowerAll}>LowerAll</button>
+            <button onClick={this.props.colorAll}>ColorAll</button>
+            <button onClick={this.props.fontAll}>FontAll</button>
+            <button onClick={this.props.sizeAll}>SizeAll</button>
             <button onClick={this.props.undo}><i class="material-icons">&#xe166;</i></button>
             <div>
                 {numbers}

@@ -26,6 +26,9 @@ class App extends React.Component {
     this.clearAll=this.clearAll.bind(this);
     this.upperAll=this.upperAll.bind(this);
     this.lowerAll=this.lowerAll.bind(this);
+    this.colorAll=this.colorAll.bind(this);
+    this.fontAll=this.fontAll.bind(this);
+    this.sizeAll=this.sizeAll.bind(this);
     this.undo=this.undo.bind(this);
 
   }
@@ -55,7 +58,25 @@ class App extends React.Component {
     const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text.toLowerCase()} styleObject={charSpan.props.styleObject}/>));
     this.setState({text:newText})
     this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
-
+  }
+  colorAll(){
+    debugger
+      const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
+      {new StyleClass(this.state.styleText.color,charSpan.props.styleObject.FontFamily,charSpan.props.styleObject.FontSize)}/>));
+      this.setState({text:newText})
+      this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
+  }
+  fontAll(){
+      const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
+      {new StyleClass(charSpan.props.styleObject.Color,this.state.styleText.fontFamily,charSpan.props.styleObject.FontSize)}/>));
+      this.setState({text:newText})
+      this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
+  }
+  sizeAll(){
+      const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
+      {new StyleClass(charSpan.props.styleObject.Color,charSpan.props.styleObject.FontFamily,this.state.styleText.fontSize)}/>));
+      this.setState({text:newText})
+      this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
  
   changeFontSize(size){
@@ -100,8 +121,8 @@ render(){
       </div>
       <StylingButtons  changeFontSize={this.changeFontSize} changeColor={this.changeColor} changeFont={this.changeFont}/>
       <Keyboard lenguage='hebrow' addChar={this.addChar} 
-      backspace={this.backspace} clearAll={this.clearAll} 
-      upperAll={this.upperAll} lowerAll={this.lowerAll} undo={this.undo}/>
+      backspace={this.backspace} clearAll={this.clearAll} ch
+      upperAll={this.upperAll} lowerAll={this.lowerAll} fontAll={this.fontAll} sizeAll={this.sizeAll} colorAll={this.colorAll} undo={this.undo}/>
     </div>
   );
 }
