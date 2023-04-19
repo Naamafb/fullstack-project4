@@ -50,31 +50,41 @@ class App extends React.Component {
     }
   upperAll(){
     debugger
-    const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text.toUpperCase()} styleObject={charSpan.props.styleObject}/>));
+    const newText=this.state.text.map(charSpan=>{
+      if(typeof charSpan.props.text == "string"){
+        return (<Text text={charSpan.props.text.toUpperCase()} styleObject={charSpan.props.styleObject}/>)}
+      else{
+        return charSpan;
+    }});
     this.setState({text:newText})
     this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
     }
   lowerAll(){
-    const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text.toLowerCase()} styleObject={charSpan.props.styleObject}/>));
+    const newText=this.state.text.map(charSpan=>{
+      if(typeof charSpan.props.text == "string"){
+        return (<Text text={charSpan.props.text.toLowerCase()} styleObject={charSpan.props.styleObject}/>)}
+      else{
+        return charSpan;
+    }});
     this.setState({text:newText})
     this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
   colorAll(){
     debugger
       const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
-      {new StyleClass(this.state.styleText.color,charSpan.props.styleObject.FontFamily,charSpan.props.styleObject.FontSize)}/>));
+      {new StyleClass(this.styleClass.returnObject().color,charSpan.props.styleObject.FontFamily,charSpan.props.styleObject.FontSize)}/>));
       this.setState({text:newText})
       this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
   fontAll(){
       const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
-      {new StyleClass(charSpan.props.styleObject.Color,this.state.styleText.fontFamily,charSpan.props.styleObject.FontSize)}/>));
+      {new StyleClass(charSpan.props.styleObject.Color,this.styleClass.returnObject().fontFamily,charSpan.props.styleObject.FontSize)}/>));
       this.setState({text:newText})
       this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
   sizeAll(){
       const newText=this.state.text.map(charSpan=>(<Text text={charSpan.props.text} styleObject=
-      {new StyleClass(charSpan.props.styleObject.Color,charSpan.props.styleObject.FontFamily,this.state.styleText.fontSize)}/>));
+      {new StyleClass(charSpan.props.styleObject.Color,charSpan.props.styleObject.FontFamily,this.styleClass.returnObject().fontSize)}/>));
       this.setState({text:newText})
       this.saveHistory.push({text:[...this.state.text], styleText:{...this.state.styleText}})
   }
@@ -110,18 +120,11 @@ class App extends React.Component {
 render(){
   return (
     <div className="App">
-      <div 
-      style={{
-          borderStyle: "dotted",
-          marginRight: 500,
-          marginLeft: 500,
-          marginTop: 150,
-          height:180}}>
-          <Screen id="mainScreen" text={this.state.text}/>
-      </div>
       <StylingButtons  changeFontSize={this.changeFontSize} changeColor={this.changeColor} changeFont={this.changeFont}/>
-      <Keyboard lenguage='hebrow' addChar={this.addChar} 
-      backspace={this.backspace} clearAll={this.clearAll} ch
+      <div  id="mainScreen">
+          <Screen text={this.state.text}/>
+      </div>
+      <Keyboard lenguage='hebrow' addChar={this.addChar} backspace={this.backspace} clearAll={this.clearAll}
       upperAll={this.upperAll} lowerAll={this.lowerAll} fontAll={this.fontAll} sizeAll={this.sizeAll} colorAll={this.colorAll} undo={this.undo}/>
     </div>
   );

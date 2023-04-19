@@ -1,8 +1,5 @@
 export class StyleClass{
         constructor(color="black",fontFamily="12px",fontSize="Arial"){
-                // this.color="black";
-                // this.fontSize="12px";
-                // this.fontFamily="Arial";
                 this.color=color;
                 this.fontFamily=fontFamily;
                 this.fontSize=fontSize;

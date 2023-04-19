@@ -12,12 +12,32 @@ code {
     monospace;
 }
 
-
 button{
   font-size:24px;
   margin: 1px;
   border-radius:10%;
 }
-*{
-  background-color:gainsboro;
+html{
+  background-color:rgb(255, 251, 223);
+}
+.keyboardButton{
+  width: 50px;
+}
+#SpaceButton{
+  width: 200px;
+  border-radius:5%;
+}
+.cllasEmojis{
+  font-size:20px;
+}
+#mainScreen{
+    background-color: white;
+    border-style: dotted;
+    margin: 20px 500px 15px 500px;
+    height:200px;
+} 
+.stylingSelect{
+  margin: 0 2px;
+  font-size:20px;
+  text-align: center;
 }

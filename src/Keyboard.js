@@ -24,9 +24,6 @@ export class Keyboard extends React.Component{
              }
     }
     cangheLenguage(){
-        // if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital'){
-        //     this.setState({lenguage:"hebrow"})
-        // }
         if(this.state.lenguage=='hebrow'){
             this.setState({lenguage:"english_small"})
         }
@@ -36,9 +33,6 @@ export class Keyboard extends React.Component{
 
     }
     changeChars(){
-    //     if(this.state.lenguage=='english_small' || this.state.lenguage=='english_capital' ||this.state.lenguage=='hebrow'){
-    //         this.setState({lenguage:"chars"})
-    //     }
         if(this.state.lenguage=='chars'){
             this.setState({lenguage:"hebrow"})
         }
@@ -46,10 +40,6 @@ export class Keyboard extends React.Component{
             this.setState({lenguage:"chars"})
         } 
 
-    }
-    charClick(e){
-        //this.props.addChar(e.target.getAttribute("Key"));
-        this.props.addChar(e);
     }
     changeEmojis(){
         debugger
@@ -60,26 +50,29 @@ export class Keyboard extends React.Component{
             this.setState({lenguage:"emojis"})
         } 
     }
+    charClick(e){
+        this.props.addChar(e);
+    }
 
     render(){
         debugger;
         const chars=lenguages[this.state.lenguage];
-        const l = chars.length; //[0:l/3]
-        const letters1=chars.slice(0, l/3).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
-        const letters2=chars.slice(l/3, 2*l/3).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
-        const letters3=chars.slice(2*l/3, l).map(char=><button onClick={()=>{this.charClick(char)}} key={char}>{char}</button>);
-        const numbers=this.numbers.map(num=><button onClick={()=>{this.charClick(num)}} key={num}>{num}</button>);
+        const letters1=chars.slice(0, 12).map((char,i)=><button className="keyboardButton" onClick={()=>{this.charClick(char)}} key={i}>{char}</button>);
+        const letters2=chars.slice(12, 23).map((char,i)=><button className="keyboardButton" onClick={()=>{this.charClick(char)}} key={i}>{char}</button>);
+        const letters3=chars.slice(23, 32).map((char,i)=><button className="keyboardButton" onClick={()=>{this.charClick(char)}} key={i}>{char}</button>);
+        const numbers=this.numbers.map(num=><button className="keyboardButton" onClick={()=>{this.charClick(num)}} key={num}>{num}</button>);
         return (
         <div>
             <button onClick={this.props.clearAll}>ClearAll</button>
             <button onClick={this.props.upperAll}>UpperAll</button>
             <button onClick={this.props.lowerAll}>LowerAll</button>
+            <button onClick={this.props.sizeAll}>SizeAll</button>
             <button onClick={this.props.colorAll}>ColorAll</button>
             <button onClick={this.props.fontAll}>FontAll</button>
-            <button onClick={this.props.sizeAll}>SizeAll</button>
-            <button onClick={this.props.undo}><i class="material-icons">&#xe166;</i></button>
+            <button onClick={this.props.undo}><i className="material-icons cllasEmojis">&#xe166;</i></button>
             <div>
                 {numbers}
+                <button onClick={this.props.backspace}><i className='fas'>&#xf55a;</i></button>
             </div>
             <div>
                 {letters1}
@@ -88,15 +81,14 @@ export class Keyboard extends React.Component{
                 {letters2}
            </div>
             <div>
+                <button onClick={this.capsLockClick}>CapsLK</button>
                 {letters3}
+                <button onClick={()=>{this.charClick(<br></br>)}}>Enter</button>
            </div>
-           <button onClick={this.capsLockClick}>CapsLK</button>
-           <button onClick={()=>{this.charClick(" ")}}>Space</button>
-           <button onClick={()=>{this.charClick(<br></br>)}}>Enter</button>
-           <button onClick={this.cangheLenguage}><i class='fas'>&#xf0ac;</i></button>
+           <button onClick={this.cangheLenguage}><i className='fas'>&#xf0ac;</i></button>
+           <button onClick={()=>{this.charClick(" ")}} id="SpaceButton">Space</button>
            <button onClick={this.changeChars}>!#1</button>
-           <button onClick={this.props.backspace}><i class='fas'>&#xf55a;</i></button>
-           <button onClick={this.changeEmojis}>&#128512;</button>
+           <button onClick={this.changeEmojis} className='cllasEmojis'>&#128512;</button>
         </div>
         );
     }

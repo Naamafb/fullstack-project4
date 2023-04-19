@@ -24,18 +24,18 @@ fontHandleChange(e){
 }
 render(){
     return <div>
-        <select id="fontSize" onChange={this.sizeHandleChange}>
+        <select className='stylingSelect' id="fontSize" onChange={this.sizeHandleChange}>
             <option value="12px">12</option>
             <option value="16px">16</option>
             <option value="20px">20</option>
         </select>
-        <select id="color" onChange={this.colorHandleChange}>
+        <select className='stylingSelect' id="color" onChange={this.colorHandleChange}>
             <option value="black" style={{color:"black"}}>Black</option>
             <option value="red" style={{color:"red"}}>Red</option>
             <option value="green" style={{color:"green"}}>Green</option>
             <option value="blue" style={{color:"blue"}}>Blue</option> 
         </select>
-        <select id="fontFamily" onChange={this.fontHandleChange}>
+        <select className='stylingSelect' id="fontFamily" onChange={this.fontHandleChange}>
             <option value="Arial" style={{fontFamily:"Arial"}}>Arial</option>
             <option value="Times New Roman" style={{fontFamily:"Times New Roman"}}>Times New Roman</option>
             <option value="verdana" style={{fontFamily:"verdana"}}>Verdana</option>
